@@ -21,7 +21,7 @@ class Candidato extends PessoaGenerica{
     public String toString() {
         return super.toString() +
                 "Idade: " + idade + "\n" +
-                "CPF " + super.getIdentificador() + '\n';
+                "CPF: " + super.getIdentificador() + '\n';
     }
 
     void alterarParametros(String nome, String email, String estado, String descricao, String CEP, String identificador, int idade){

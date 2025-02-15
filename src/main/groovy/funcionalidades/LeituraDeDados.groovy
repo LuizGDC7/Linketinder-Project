@@ -4,22 +4,17 @@ import classes.Candidato
 import classes.Empresa
 
 class LeituraDeDados{
-    Scanner scanner
+    static Scanner scanner = new Scanner(System.in)
 
-    LeituraDeDados(){
-        this.scanner = new Scanner(System.in)
-    }
-
-    <T> T lerDado(Class <T> tipoDado, String mensagem = "", String mensagemErro = "", Closure validador){
+    static <T> T lerDado(Class <T> tipoDado, String mensagem = "", String mensagemErro = "", Closure validadorDados){
         println mensagem
-        println tipoDado
         while(true){
             try{
                 String entrada = scanner.nextLine()
-                def conversor = CONVERSORES[tipoDado]
+                def conversor = CAST_UNIVERSAL[tipoDado]
                 if(conversor){
                     def val = conversor(entrada)
-                    if(validador(val)){
+                    if(validadorDados(val)){
                         return val
                     }
                 }else{
@@ -31,14 +26,14 @@ class LeituraDeDados{
         }
     }
 
-    public static final Map<Class<?>, Closure<?>> CONVERSORES = [
+    static final Map<Class<?>, Closure<?>> CAST_UNIVERSAL = [
             (String): {String entrada -> entrada},
             (Integer): {String entrada -> Integer.parseInt(entrada)},
             (Double): {String entrada -> Double.parseDouble(entrada)},
             (Boolean): {String entrada -> Boolean.parseBoolean(entrada)}
     ]
 
-    Closure validar(String validacao = "default"){
+    static Closure validador(String validacao = "default"){
         def mapa = [
                 "InRange": {
                     x, y, valor -> return x <= valor && valor <= y
@@ -56,33 +51,33 @@ class LeituraDeDados{
         String[] informacoes = ["Nome", "E-mail", "Descrição", "CEP", "CPF", "Idade"]
         int idade = -1
 
-        println "Digite o número do atributo que você deseja inserir:"
 
         int escolhaOpcao
 
         while(true) {
+            println "\nDigite o número do atributo que você deseja inserir:\n"
             println(
-                    "0 - Nome\n" +
+                            "0 - Nome\n" +
                             "1 - E-mail\n" +
                             "2 - Estado\n" +
                             "3 - Descrição\n" +
-                            "4 - CEP" +
+                            "4 - CEP\n" +
                             "5 - CPF\n" +
                             "6 - Idade\n" +
                             "7 - Estou satisfeito\n" +
                             "Insira opção: "
             )
 
-            def validar = CONVERSORES["InRange"]
+            def validar = validador("InRange")
             escolhaOpcao = lerDado(Integer, "", "Insira um número entre 0 e 7", validar.curry(0, 7))
 
             switch (escolhaOpcao) {
                 case 0..5: {
-                    String valor = lerDado(String, "Insira o valor:", "", CONVERSORES["default"])
+                    String valor = lerDado(String, "Insira o valor:", "", validador())
                     valores[escolhaOpcao] = valor
                 }; break;
                 case 6: {
-                    def validar2 = CONVERSORES["InRange"]
+                    def validar2 = validador("InRange")
                     idade = lerDado(Integer, "Insira idade", "Idade estranha, insira outra", validar2.curry(0, 130))
                 }; break;
                 case 7: {
@@ -94,9 +89,9 @@ class LeituraDeDados{
             println("\nDados Inseridos:\n")
             for(int c = 0; c < 7; c++){
                 if(c < 6){
-                    println("${informacoes[c]}: ${valores[c]}")
+                    println("${informacoes[c]}: ${valores[c] == null ? "" : valores[c]}")
                 }else{
-                    println("Idade: ${idade}")
+                    println("Idade: ${idade == -1 ? "" : idade}")
                 }
             }
 
@@ -106,31 +101,31 @@ class LeituraDeDados{
     }
 
     static Empresa criarEmpresa(){
-        String[] valores = new String[7]// nome, email, estado, descricao, CEP, identificador
-        String[] informacoes = ["Nome", "E-mail", "Descrição", "CEP", "CNPJ", "País"]
+        String[] valores = new String[7]// nome, email, estado, descricao, CEP, identificador, País
+        String[] informacoes = ["Nome", "E-mail", "Estado", "Descrição", "CEP", "CNPJ", "País"]
 
-        println "Digite o número do atributo que você deseja inserir:"
 
         int escolhaOpcao
 
         while(true){
+            println "\nDigite o número do atributo que você deseja inserir:\n"
             println(
                             "0 - Nome\n" +
                             "1 - E-mail\n" +
                             "2 - Estado\n" +
                             "3 - Descrição\n" +
-                            "4 - CEP" +
+                            "4 - CEP\n" +
                             "5 - CNPJ\n" +
                             "6 - País\n" +
                             "7 - Estou satisfeito\n" +
                             "Insira opção: "
             )
 
-            def validar = CONVERSORES["InRange"]
+            def validar = validador("InRange")
             escolhaOpcao = lerDado(Integer, "", "Insira um número entre 0 e 7", validar.curry(0, 7))
             switch(escolhaOpcao){
                 case 0..6: {
-                    String valor = lerDado(String, "Insira o valor:", "", CONVERSORES["default"])
+                    String valor = lerDado(String, "Insira o valor:", "", validador())
                     valores[escolhaOpcao] = valor
                 }; break;
                 case 7: {
@@ -140,8 +135,10 @@ class LeituraDeDados{
 
             println("Valores inseridos até agora:\n")
             for(int c = 0; c < 7; c++){
-                println("${informacoes[c]}: ${valores[c]}")
+                println("${informacoes[c]}: ${valores[c] == null ? "" : valores[c]}")
             }
+
+            println("\n")
 
         }
         return null

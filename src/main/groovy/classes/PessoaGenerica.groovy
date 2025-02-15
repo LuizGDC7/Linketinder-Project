@@ -22,7 +22,7 @@ class PessoaGenerica {
         return  "nome: " + nome + '\n' +
                 "email: " + email + '\n' +
                 "estado: " + estado + '\n' +
-                "descricao :" + descricao + '\n' +
+                "descrição: " + descricao + '\n' +
                 "CEP: " + CEP + '\n'
         ;
     }

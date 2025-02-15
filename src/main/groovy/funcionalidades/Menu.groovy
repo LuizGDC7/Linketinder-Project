@@ -5,10 +5,9 @@ import classes.Candidato
 import classes.Empresa
 
 class Menu {
-    LeituraDeDados leitor;
 
     Menu(){
-        this.leitor = new LeituraDeDados()
+
     }
 
     void opcoes(){
@@ -27,8 +26,8 @@ Insira uma opção:
 
     int obterOpcao(){
         opcoes()
-        Closure validacao = leitor.validar("InRange")
-        int opcaoSelecionada = leitor.lerDado(Integer, "", "Insira um valor numérico", validacao.curry(0, 4))
+        Closure validacao = LeituraDeDados.validador("InRange")
+        int opcaoSelecionada = LeituraDeDados.lerDado(Integer, "", "Insira um valor numérico", validacao.curry(0, 4))
         return opcaoSelecionada
     }
 
