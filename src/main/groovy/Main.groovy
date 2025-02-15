@@ -1,3 +1,5 @@
+// Feito por Luiz Guilherme Dias Catulio
+
 import classes.Candidato
 import classes.Empresa
 import funcionalidades.Menu
