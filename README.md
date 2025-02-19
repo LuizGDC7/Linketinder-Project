@@ -1,4 +1,3 @@
-
 # LinkeTinder
 
 O projeto é uma aplicação junção do Tinder com LinkedIn para que empresas e candidatos possam se comunicar mais facilmente. Candidatos e empresas podem ser criados.

@@ -1,15 +1,17 @@
 // Feito por Luiz Guilherme Dias Catulio
 
+
+import View.MenuView
 import classes.Candidato
 import classes.Empresa
-import funcionalidades.Menu
-
-import java.lang.reflect.Array
+import funcionalidades.Leitura.LeituraDeDados
+import funcionalidades.Menu.Menu
+import funcionalidades.Validacao.ValidarLeituraDados
 
 static void main(String[] args) {
   ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
   ArrayList<Empresa> empresas = new ArrayList<>()
-  Menu menu = new Menu();
+  MenuView menuView = new MenuView(new Menu(), new LeituraDeDados(), new ValidarLeituraDados(), 4, candidatos, empresas);
 
   candidatos.addAll([
           new Candidato("Luiz", "luiz@gmail.com", "Goiânia/GO", "Desenvolvedor Full Stack com 5 anos de experiência", "01010-000", "123.456.789-01", 29, new ArrayList<String>(["Python", "Java", "C++"])),
@@ -28,9 +30,5 @@ static void main(String[] args) {
           new Empresa("Agile Projects","contato@agileprojects.com","Bahia","Empresa especializada em gerenciamento ágil de projetos","40030-300","56.789.012/0001-34","Brasil", new ArrayList<String>(["Python", "Power BI", "C++"]))
   ])
 
-  while(true){
-    int escolha = menu.obterOpcao()
-    if(escolha == 0) break;
-    menu.executarOpcao(escolha, candidatos, empresas)
-  }
+  menuView.interagirComOUsuario()
 }
