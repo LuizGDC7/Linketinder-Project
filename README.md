@@ -4,6 +4,7 @@ O projeto é uma aplicação junção do Tinder com LinkedIn para que empresas e
 
 Projeto desenvolvido para Linux, com o objetivo de desenvolver habilidades em Java, Groovy, TypeScript, JavaScript, Gradles, Angular e muito mais.
 
+Autor: Luiz Guilherme Dias Catulio
 ## Requisitos
 
 Git
