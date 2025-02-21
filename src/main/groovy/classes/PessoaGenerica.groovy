@@ -1,5 +1,7 @@
 package classes
 
+
+// Classe anoréxica
 class PessoaGenerica {
     String nome, email, estado, descricao, identificador, CEP
 
@@ -19,10 +21,10 @@ class PessoaGenerica {
 
     @Override
     public String toString() {
-        return  "nome: " + nome + '\n' +
-                "email: " + email + '\n' +
-                "estado: " + estado + '\n' +
-                "descrição: " + descricao + '\n' +
+        return  "Nome: " + nome + '\n' +
+                "E-mail: " + email + '\n' +
+                "Estado: " + estado + '\n' +
+                "Descrição: " + descricao + '\n' +
                 "CEP: " + CEP + '\n'
         ;
     }

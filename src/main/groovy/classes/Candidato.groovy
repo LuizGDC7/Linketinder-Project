@@ -14,10 +14,15 @@ class Candidato extends PessoaGenerica{
 
     }
 
-    static void mostrarCandidatos(List<Candidato> lista){
+    static ArrayList<String> mostrarCandidatos(List<Candidato> lista){
+
+        ArrayList<String> saida = new ArrayList<>()
+
         for(Candidato candidato in lista){
-            println candidato
+            saida.add(candidato.toString())
         }
+
+        return saida
     }
 
     @Override
@@ -25,7 +30,7 @@ class Candidato extends PessoaGenerica{
         String retorno = super.toString() +
                 "Idade: " + idade + "\n" +
                 "CPF: " + super.getIdentificador() + '\n';
-                retorno += "Compências: "
+                retorno += "Competências: "
                 if(competencias != null){
                     for(int c = 0; c < competencias.size(); c++){
                         retorno += (c == 0 ? competencias.get(c) : ", ${competencias.get(c)}")
@@ -35,16 +40,19 @@ class Candidato extends PessoaGenerica{
         return retorno
     }
 
-    void alterarParametros(String nome, String email, String estado, String descricao, String CEP, String identificador, int idade, ArrayList<String> novasCompetencias){
-            super.setNome(nome)
-            super.setEmail(email)
-            super.setEstado(estado)
-            super.setDescricao(descricao)
-            super.setCEP(CEP)
-            super.setIdentificador(identificador)
-            setIdade(idade)
-            setCompetencias(novasCompetencias)
+    boolean equals(Object outro) {
+        if (outro == null || !(outro instanceof Candidato)) {
+            return false
+        }
+        Candidato outroCandidato = (Candidato) outro
+        return this.nome == outroCandidato.nome &&
+                this.email == outroCandidato.email &&
+                this.estado == outroCandidato.estado &&
+                this.descricao == outroCandidato.descricao &&
+                this.CEP == outroCandidato.CEP &&
+                this.identificador == outroCandidato.identificador &&
+                this.idade == outroCandidato.idade &&
+                this.competencias == outroCandidato.competencias
     }
-
 
 }
