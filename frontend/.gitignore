@@ -1,0 +1,37 @@
+# Dependências
+/node_modules
+/.pnpm-store
+/.yarn/cache
+/.yarn/install-state.gz
+
+# Build e output
+/dist
+/out
+/.tsbuildinfo
+
+# Ambiente e configurações locais
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs e cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+/.vscode
+/.idea
+/.DS_Store
+
+# Ferramentas de build e teste
+/.vite
+/.cache
+/coverage
+/.nyc_output
+
+# Outros
+*.log
+*.tmp
+*.bak
