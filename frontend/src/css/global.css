@@ -27,3 +27,26 @@ main{
     flex-direction: column;
 }
 
+.fora{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: purple;
+
+    .cima{
+        width: 100px;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    #descricaoInput{
+        height: 50px;
+        width: 100%;
+    }
+
+    .listaCompetencias{
+        height: 50px;
+        width: 100%;
+    }
+}
