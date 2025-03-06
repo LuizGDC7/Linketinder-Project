@@ -61,6 +61,8 @@ class CadastrarEmpresa extends HTMLElement {
       <button type="submit">Cadastrar!</button>
     </div>`;
 
+    
+
         shadow.appendChild(link);
         shadow.appendChild(template.content.cloneNode(true));
     }
